@@ -7,9 +7,14 @@ export const ContactForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { name, number } = event.target.elements;
+    const { name, phone } = event.target.elements;
 
-    dispatch(addContact(name.value, number.value));
+    const contactData = {
+      name: name.value,
+      phone: phone.value,
+    };
+
+    dispatch(addContact(contactData));
 
     event.target.reset();
   };
@@ -33,7 +38,7 @@ export const ContactForm = () => {
           Number
           <input
             type="tel"
-            name="number"
+            name="phone"
             pattern="^\+?\d{1,4}?\s?\(?\d{1,4}?\)?\s?\d{1,4}\s?\d{1,4}\s?\d{1,9}$"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
